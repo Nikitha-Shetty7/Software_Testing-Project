@@ -4,13 +4,13 @@ A fully functional e-commerce web application built with Flask, paired with a co
 
 ## 🛒 Features
 
-- **User Authentication** — Registration with validation, login/logout
-- **Product Catalog** — 18 products across 4 categories (Electronics, Fashion, Shoes, Books), search, and category filtering
-- **Shopping Cart** — Add/remove items, live quantity adjustment (+/-), automatic total calculation
-- **Wishlist** — Save items for later, move to cart, remove
-- **Checkout** — Address form with validation (phone, pincode), delivery option (Standard/Express) with live estimated delivery date
-- **Payment** — UPI, Card, and Cash on Delivery, with correct payment status handling (Paid vs Pending)
-- **Order Management** — Order history, order details, cancel order
+- **User Authentication** - Registration with validation, login/logout
+- **Product Catalog** - 18 products across 4 categories (Electronics, Fashion, Shoes, Books), search, and category filtering
+- **Shopping Cart** - Add/remove items, live quantity adjustment (+/-), automatic total calculation
+- **Wishlist** - Save items for later, move to cart, remove
+- **Checkout** - Address form with validation (phone, pincode), delivery option (Standard/Express) with live estimated delivery date
+- **Payment** - UPI, Card, and Cash on Delivery, with correct payment status handling (Paid vs Pending)
+- **Order Management** - Order history, order details, cancel order
 
 ## 🧰 Tech Stack
 
