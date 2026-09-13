@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QuickCart | Home</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>QuickCart</h2>
+
+    <div class="nav-right">
+
+        <form method="GET" action="/products">
+
+            <input type="text"
+                   name="search"
+                   id="search"
+                   placeholder="Search products">
+
+            <button type="submit"
+                    id="searchBtn">
+                Search
+            </button>
+
+        </form>
+
+        <a href="/wishlist"
+           id="wishlist">
+            Wishlist
+        </a>
+
+        <a href="/cart"
+           id="cart">
+            Cart
+        </a>
+
+        <a href="/login"
+           id="logout">
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+    <!-- Categories -->
+    <h3>Categories</h3>
+
+    <p>
+        <a href="/products?category=Electronics"
+           id="electronics">
+            Electronics
+        </a>
+
+        <a href="/products?category=Fashion"
+           id="fashion">
+            Fashion
+        </a>
+
+        <a href="/products?category=Shoes"
+           id="shoes">
+            Shoes
+        </a>
+
+        <a href="/products?category=Books"
+           id="books">
+            Books
+        </a>
+    </p>
+
+    <hr>
+
+    <h3>Featured Products</h3>
+
+    <div id="productList">
+
+        {% for p in products %}
+
+            <div class="product-card">
+
+                <img src="{{ url_for('static', filename='images/' + p.image) }}"
+                     alt="{{ p.name }}"
+                     style="width: 100px;
+                            height: 100px;
+                            object-fit: contain;">
+
+                <p>{{ p.name }}</p>
+
+                <p>₹ {{ p.price }}</p>
+
+                <a href="/product/{{ p.id }}"
+                   id="view-{{ p.id }}">
+                    View
+                </a>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>

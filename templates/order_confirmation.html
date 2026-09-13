@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QuickCart | Order Confirmed</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <h2><a href="/home" style="color:white;text-decoration:none;">QuickCart</a></h2>
+    <div class="nav-right">
+      <a href="/wishlist" id="wishlist">Wishlist</a>
+            <a href="/cart" id="cart">Cart</a>
+      <a href="/login" id="logout">Logout</a>
+    </div>
+  </div>
+
+  <div class="container">
+    {% if order.method == 'COD' %}
+      <h2 id="successMsg">Order Placed!</h2>
+    {% else %}
+      <h2 id="successMsg">Payment Successful!</h2>
+    {% endif %}
+    <p id="orderId">Order ID: {{ order.id }}</p>
+    <p id="orderTotal">Amount: Rs. {{ order.total }}</p>
+    <p id="paymentMethod">Payment Method: {{ order.method }}</p>
+    <p id="paymentStatus">Payment Status: {{ order.payment_status }}</p>
+    <p id="deliveryDate">Estimated Delivery: {{ order.shipping.estimated_delivery }}</p>
+    <a href="/orders" id="viewOrdersLink">View My Orders</a>
+  </div>
+</body>
+</html>

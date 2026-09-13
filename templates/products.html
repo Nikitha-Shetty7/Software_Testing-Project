@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QuickCart | Products</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h2>
+            <a href="/home" style="color: white; text-decoration: none;">
+                QuickCart
+            </a>
+        </h2>
+
+        <div class="nav-right">
+
+            <form method="GET" action="/products">
+
+                <input
+                    type="text"
+                    name="search"
+                    id="search"
+                    placeholder="Search products"
+                    value="{{ query }}"
+                >
+
+                <button type="submit" id="searchBtn">
+                    Search
+                </button>
+
+            </form>
+
+            <a href="/wishlist" id="wishlist">Wishlist</a>
+            <a href="/cart" id="cart">Cart</a>
+
+            <a href="/login" id="logout">Logout</a>
+
+        </div>
+
+    </div>
+
+    <h3>Filter by Category</h3>
+
+    <p>
+        <a href="/products">All</a> |
+        <a href="/products?category=Electronics">Electronics</a> |
+        <a href="/products?category=Fashion">Fashion</a> |
+        <a href="/products?category=Shoes">Shoes</a> |
+        <a href="/products?category=Books">Books</a>
+    </p>
+
+    <hr>
+
+    <div id="productList">
+
+        {% if products %}
+
+            {% for p in products %}
+
+                <div class="product-card">
+
+                    <img src="{{ url_for('static', filename='images/' + p.image) }}"
+                         alt="{{ p.name }}"
+                         style="width:100px; height:100px; object-fit:contain;">
+
+                    <p>{{ p.name }}</p>
+
+                    <p>₹ {{ p.price }}</p>
+
+                    <a href="/product/{{ p.id }}" id="view-{{ p.id }}">
+                        View
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p id="noResults">
+                No products found
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

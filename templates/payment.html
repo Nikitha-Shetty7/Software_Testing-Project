@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QuickCart | Payment</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <h2><a href="/home" style="color:white;text-decoration:none;">QuickCart</a></h2>
+    <div class="nav-right">
+      <a href="/wishlist" id="wishlist">Wishlist</a>
+            <a href="/cart" id="cart">Cart</a>
+      <a href="/login" id="logout">Logout</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Payment</h2>
+    <p id="amount">Amount: Rs. {{ total }}</p>
+
+    <form method="POST" action="/payment">
+      <div class="radio-option">
+        <input type="radio" name="method" value="UPI" id="upi" checked>
+        <label for="upi" style="display:inline;">UPI</label>
+      </div>
+      <div class="radio-option">
+        <input type="radio" name="method" value="Card" id="card">
+        <label for="card" style="display:inline;">Card</label>
+      </div>
+      <div class="radio-option">
+        <input type="radio" name="method" value="COD" id="cod">
+        <label for="cod" style="display:inline;">Cash on Delivery</label>
+      </div>
+      <br>
+      <button type="submit" id="payNow">Pay Now</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #FBF7F0;
+  --surface: #FFFFFF;
+  --ink: #24231F;
+  --muted: #746E60;
+  --accent: #2F6F5E;
+  --accent-dark: #234F42;
+  --accent-soft: #E4EFEA;
+  --error: #B3432B;
+  --border: #E7E1D4;
+  --radius: 10px;
+  --shadow: 0 2px 10px rgba(36, 35, 31, 0.06);
+  --shadow-hover: 0 8px 24px rgba(36, 35, 31, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.6rem;
+  margin: 24px 30px 16px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin: 20px 30px 10px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 10px 30px;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background-color: var(--accent);
+  color: white;
+  padding: 18px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.4rem;
+}
+
+.navbar a {
+  color: white;
+}
+
+.navbar a:hover {
+  color: var(--accent-soft);
+}
+
+.navbar form {
+  display: flex;
+  gap: 8px;
+}
+
+.navbar input[type="text"] {
+  width: 220px;
+  margin: 0;
+}
+
+.navbar button {
+  width: auto;
+  padding: 10px 18px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-right form {
+  margin: 0;
+}
+
+/* ---------- Containers & cards ---------- */
+.container {
+  max-width: 420px;
+  margin: 60px auto;
+  background: var(--surface);
+  padding: 36px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.container h2 {
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+#productList,
+#wishlistItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 10px 30px 30px;
+}
+
+.product-card {
+  display: block;
+  background: var(--surface);
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  width: 170px;
+  border: 1px solid var(--border);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.product-card img {
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background: var(--accent-soft);
+}
+
+.product-card p:first-of-type {
+  font-weight: 500;
+  margin: 6px 0 2px;
+}
+
+.product-card p {
+  margin: 4px 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* ---------- Category filter pills ---------- */
+p a[href^="/products"] {
+  display: inline-block;
+  padding: 6px 16px;
+  margin: 4px 4px 4px 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 0.9rem;
+  background: var(--surface);
+}
+
+p a[href^="/products"]:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+/* ---------- Forms ---------- */
+label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 14px 0 4px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"] {
+  width: 100%;
+  padding: 11px 12px;
+  margin: 4px 0 4px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: var(--bg);
+  transition: border-color 0.15s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+input[type="radio"] {
+  width: auto;
+  margin-right: 8px;
+  accent-color: var(--accent);
+}
+
+.radio-option {
+  margin: 10px 0;
+  font-size: 0.95rem;
+}
+
+/* ---------- Buttons ---------- */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: inherit;
+  margin-top: 6px;
+  transition: background-color 0.15s ease;
+}
+
+button:hover {
+  background-color: var(--accent-dark);
+}
+
+/* Secondary-style buttons: Remove / Cancel */
+button[id^="remove"],
+button[id^="cancel"] {
+  background-color: transparent;
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+
+button[id^="remove"]:hover,
+button[id^="cancel"]:hover {
+  background-color: var(--error);
+  color: white;
+}
+
+/* ---------- Error messages ---------- */
+.error {
+  color: var(--error);
+  font-size: 0.88rem;
+  background: #FBEAE6;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin: 10px 0;
+  list-style: none;
+}
+
+/* ---------- Tables (Cart / Orders) ---------- */
+table {
+  border-collapse: collapse;
+  margin: 20px 30px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+table th {
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+table td {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+
+table button {
+  width: auto;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+}
+
+/* ---------- Misc page text ---------- */
+#emptyCart,
+#emptyWishlist,
+#noResults,
+#noOrders {
+  margin: 30px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+#cartTotal {
+  margin: 20px 30px;
+}
+
+#checkoutBtn,
+#viewOrdersLink,
+#backToOrders {
+  display: inline-block;
+  margin: 10px 30px;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: white;
+  border-radius: 6px;
+}
+
+#checkoutBtn:hover,
+#viewOrdersLink:hover,
+#backToOrders:hover {
+  background: var(--accent-dark);
+  text-decoration: none;
+}

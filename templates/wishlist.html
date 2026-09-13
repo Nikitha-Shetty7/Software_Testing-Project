@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QuickCart | Wishlist</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h2>
+            <a href="/home"
+               style="color: white; text-decoration: none;">
+                QuickCart
+            </a>
+        </h2>
+
+        <div class="nav-right">
+            <a href="/wishlist" id="wishlist">Wishlist</a>
+            <a href="/cart" id="cart">Cart</a>
+            <a href="/login" id="logout">Logout</a>
+        </div>
+
+    </div>
+
+    <h2>My Wishlist</h2>
+
+    {% if items %}
+
+        <div id="wishlistItems">
+
+            {% for p in items %}
+
+                <div class="product-card"
+                     id="wishlist-{{ p.id }}">
+
+                    <img src="{{ url_for('static', filename='images/' + p.image) }}"
+                         alt="{{ p.name }}"
+                         style="width:100px; height:100px; object-fit:contain;">
+
+                    <p>
+                        {{ p.name }}
+                    </p>
+
+                    <p>
+                        Rs. {{ p.price }}
+                    </p>
+
+
+                    <form method="POST"
+                          action="/wishlist-to-cart/{{ p.id }}">
+
+                        <button type="submit"
+                                id="moveToCart-{{ p.id }}">
+                            Move to Cart
+                        </button>
+
+                    </form>
+
+
+                    <form method="POST"
+                          action="/remove-from-wishlist/{{ p.id }}">
+
+                        <button type="submit"
+                                id="removeWishlist-{{ p.id }}">
+                            Remove
+                        </button>
+
+                    </form>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <p id="emptyWishlist">
+            Your wishlist is empty.
+        </p>
+
+    {% endif %}
+
+</body>
+
+</html>

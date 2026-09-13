@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QuickCart | {{ product.name }}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h2>
+            <a href="/home"
+               style="color: white; text-decoration: none;">
+                QuickCart
+            </a>
+        </h2>
+
+        <div class="nav-right">
+            <a href="/wishlist" id="wishlist">Wishlist</a>
+            <a href="/cart" id="cart">Cart</a>
+            <a href="/login" id="logout">Logout</a>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <h2 id="productName">
+            {{ product.name }}
+        </h2>
+
+        <img src="{{ url_for('static', filename='images/' + product.image) }}"
+             alt="{{ product.name }}"
+             style="width: 200px;
+                    height: 200px;
+                    object-fit: contain;
+                    display: block;
+                    margin: 0 auto;">
+
+        <p id="productPrice">
+            ₹ {{ product.price }}
+        </p>
+
+        <p>
+            Category: {{ product.category }}
+        </p>
+
+        <form method="POST"
+              action="/add-to-cart/{{ product.id }}">
+
+            <label>Quantity:</label>
+
+            <input
+                type="number"
+                name="quantity"
+                id="quantity"
+                value="1"
+                min="1"
+                style="width: 60px;"
+            >
+
+            <br><br>
+
+            <button type="submit" id="addToCart">
+                Add to Cart
+            </button>
+
+        </form>
+        <form method="POST" action="/add-to-wishlist/{{ product.id }}">
+  <button type="submit" id="addToWishlist">Add to Wishlist</button>
+</form>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QuickCart | Checkout</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h2>
+            <a href="/home"
+               style="color: white; text-decoration: none;">
+                QuickCart
+            </a>
+        </h2>
+
+        <div class="nav-right">
+            <a href="/wishlist" id="wishlist">Wishlist</a>
+            <a href="/cart" id="cart">Cart</a>
+            <a href="/login" id="logout">Logout</a>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <h2>Checkout</h2>
+
+        {% if errors %}
+            <ul class="error" id="errorList">
+                {% for e in errors %}
+                    <li>{{ e }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="POST" action="/checkout">
+
+            <label>Name:</label>
+
+            <input type="text"
+                   name="name"
+                   id="name"
+                   value="{{ form.name or '' }}">
+
+            <label>Phone:</label>
+
+            <input type="text"
+                   name="phone"
+                   id="phone"
+                   value="{{ form.phone or '' }}">
+
+            <label>Address:</label>
+
+            <input type="text"
+                   name="address"
+                   id="address"
+                   value="{{ form.address or '' }}">
+
+            <label>City:</label>
+
+            <input type="text"
+                   name="city"
+                   id="city"
+                   value="{{ form.city or '' }}">
+
+            <label>Pincode:</label>
+
+            <input type="text"
+                   name="pincode"
+                   id="pincode"
+                   value="{{ form.pincode or '' }}">
+
+            <label>Delivery Option:</label>
+
+            <div class="radio-option">
+                <input type="radio"
+                       name="delivery"
+                       value="Standard"
+                       id="standard"
+                       checked>
+                <label for="standard" style="display:inline;">Standard</label>
+            </div>
+
+            <div class="radio-option">
+                <input type="radio"
+                       name="delivery"
+                       value="Express"
+                       id="express">
+                <label for="express" style="display:inline;">Express</label>
+            </div>
+
+            <p id="deliveryPreview" style="color: var(--muted); font-size: 0.85rem;"></p>
+
+            <button type="submit"
+                    id="continueBtn">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+
+    <script>
+        function updateDeliveryPreview() {
+            var selected = document.querySelector('input[name="delivery"]:checked').value;
+            var days = selected === 'Express' ? 2 : 6;
+            var date = new Date();
+            date.setDate(date.getDate() + days);
+            var options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+            document.getElementById('deliveryPreview').innerText = 'Estimated delivery: ' + date.toLocaleDateString('en-US', options);
+        }
+        document.querySelectorAll('input[name="delivery"]').forEach(function(radio) {
+            radio.addEventListener('change', updateDeliveryPreview);
+        });
+        updateDeliveryPreview();
+    </script>
+
+</body>
+
+</html>

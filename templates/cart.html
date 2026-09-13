@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QuickCart | Cart</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h2>
+            <a href="/home"
+               style="color: white; text-decoration: none;">
+                QuickCart
+            </a>
+        </h2>
+
+        <div class="nav-right">
+            <a href="/wishlist" id="wishlist">Wishlist</a>
+            <a href="/cart" id="cart">Cart</a>
+            <a href="/login" id="logout">Logout</a>
+        </div>
+
+    </div>
+
+    <h2>My Cart</h2>
+
+    {% if items %}
+
+        <table border="1"
+               cellpadding="10"
+               style="border-collapse: collapse; margin: 20px;">
+
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+
+            {% for item in items %}
+
+                <tr id="cart-item-{{ item.product.id }}">
+
+                    <td>
+                        <img src="{{ url_for('static', filename='images/' + item.product.image) }}"
+                             alt="{{ item.product.name }}"
+                             style="width:50px; height:50px; object-fit:contain;">
+                    </td>
+
+                    <td>
+                        {{ item.product.name }}
+                    </td>
+
+                    <td>
+                        Rs. {{ item.product.price }}
+                    </td>
+
+
+
+
+                    <td id="qty-{{ item.product.id }}">
+
+    <form method="POST"
+          action="/update-cart/{{ item.product.id }}"
+          style="display: inline;">
+
+        <input type="hidden"
+               name="action"
+               value="decrease">
+
+        <button type="submit"
+                id="decrease-{{ item.product.id }}"
+                style="width: auto;
+                       padding: 4px 10px;">
+            -
+        </button>
+
+    </form>
+
+    <span id="qtyValue-{{ item.product.id }}">
+        {{ item.quantity }}
+    </span>
+
+    <form method="POST"
+          action="/update-cart/{{ item.product.id }}"
+          style="display: inline;">
+
+        <input type="hidden"
+               name="action"
+               value="increase">
+
+        <button type="submit"
+                id="increase-{{ item.product.id }}"
+                style="width: auto;
+                       padding: 4px 10px;">
+            +
+        </button>
+
+    </form>
+
+</td>
+
+                    <td>
+                        Rs. {{ item.subtotal }}
+                    </td>
+
+                    <td>
+
+                        <form method="POST"
+                              action="/remove-from-cart/{{ item.product.id }}">
+
+                            <button type="submit"
+                                    id="remove-{{ item.product.id }}">
+                                Remove
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+        </table>
+
+        <h3 id="cartTotal">
+            Total: Rs. {{ total }}
+        </h3>
+
+        <a href="/checkout"
+           id="checkoutBtn">
+            Proceed to Checkout
+        </a>
+
+    {% else %}
+
+        <p id="emptyCart">
+            Your cart is empty.
+        </p>
+
+    {% endif %}
+
+</body>
+
+</html>

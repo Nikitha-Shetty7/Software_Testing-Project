@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QuickCart | Order Details</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <h2><a href="/home" style="color:white;text-decoration:none;">QuickCart</a></h2>
+    <div class="nav-right">
+      <a href="/wishlist" id="wishlist">Wishlist</a>
+            <a href="/cart" id="cart">Cart</a>
+      <a href="/login" id="logout">Logout</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Order Details</h2>
+    <p id="detailOrderId">Order ID: {{ order.id }}</p>
+    <p id="detailAmount">Amount: Rs. {{ order.total }}</p>
+    <p id="detailMethod">Payment Method: {{ order.method }}</p>
+    <p id="detailPaymentStatus">Payment Status: {{ order.payment_status }}</p>
+    <p id="detailStatus">Status: {{ order.status }}</p>
+    <p id="detailAddress">Address: {{ order.shipping.address }}, {{ order.shipping.city }} - {{ order.shipping.pincode }}</p>
+    <p id="detailDelivery">Estimated Delivery: {{ order.shipping.estimated_delivery }}</p>
+
+    {% if order.status != 'Cancelled' %}
+      <form method="POST" action="/cancel-order/{{ order.id }}">
+        <button type="submit" id="cancelOrder">Cancel Order</button>
+      </form>
+    {% endif %}
+
+    <br>
+    <a href="/orders" id="backToOrders">Back to Orders</a>
+  </div>
+</body>
+</html>
